@@ -292,7 +292,9 @@
 </head>
 <body style="background-color: darkslateblue">
   <?php
-      include("navBar.php");
+    // session_start();
+    include("navBar.php");
+    echo $_SESSION["user"];
   ?>
   <div class="container-lg">
     <br>
