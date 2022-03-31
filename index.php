@@ -21,7 +21,9 @@
 
 <body>
 <?php
+    // session_start();
     include("navBar.php");
+    echo $_SESSION["user"];
 ?>
 <div class="container">
   <h1>Hello World!</h1>  
