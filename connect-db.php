@@ -4,20 +4,20 @@
 ////////////////////////////////////////////
 /** S22, PHP (on Google Standard App Engine) connect to MySQL instance (GCP) **/
 // $username = 'root';                      // or your username
-// $password = 'your-root-password';        // or your password
-// $host = 'cs4750:us-east4:db-demo';       // projectID = cs4750, SQL instance ID = db-demo
-// $dbname = 'guestbook';                   // database name = guestbook
-// $dsn = "mysql:unix_socket=/cloudsql/cs4750:us-east4:db-demo;dbname=guestbook";
+// $password = '';        // or your password
+// $host = '';       // projectID = cs4750, SQL instance ID = db-demo
+// $dbname = '';                   // database name = guestbook
+// $dsn = "";
 
 // to get instance connection name, go to GCP SQL overview page
-////////////////////////////////////////////
+//////////////////////////////////////////
 
 /** S22, PHP (on local XAMPP or CS server) connect to MySQL instance (GCP) **/
-// $username = 'root';                      // or your username
-// $password = 'your-root-password';        // or your password
-// $host = 'cs4750:us-east4:db-demo';       // projectID = cs4750, SQL instance ID = db-demo
-// $dbname = 'guestbook';                   // database name = guestbook
-// $dsn = "mysql:host=your-SQL-public-IP-address;dbname=$dbname";       // connect PHP (XAMPP) to DB (GCP)
+$username = 'root';                      // or your username
+$password = '';        // or your password
+$host = '';       // projectID = cs4750, SQL instance ID = db-demo
+$dbname = '';                   // database name = guestbook
+$dsn = "mysql:host=;dbname=$dbname";       // connect PHP (XAMPP) to DB (GCP)
 
 // to get public IP addres of the SQL instance, go to GCP SQL overview page
 

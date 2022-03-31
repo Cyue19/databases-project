@@ -1,0 +1,13 @@
+.registerCard {
+    background-color: #091436;
+    color: white;
+    width: 70%;
+    margin: auto;
+}
+
+.registerBtn {
+    background-color: #59189A;
+    color: white;
+    width: 70%;
+    border-radius: 0px;
+}
