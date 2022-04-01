@@ -1,7 +1,4 @@
-<?php
-session_start();
-?>
-
+<!-- 1. create HTML5 doctype -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,13 +45,10 @@ session_start();
                         <a class="nav-link" href="profile.php">my profile</a>
                     </li>
                 </ul>
-                <?php
-                    if (!isset($_SESSION["user"])) {
-                        echo '<a href="login.php" class="btn btn-primary">Sign In</a>';
-                    } else {
-                        echo '<a href="logout.php" class="btn btn-primary">Sign Out</a>';
-                    }
-                ?>
+                
+                <form>
+                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                </form>
             </div>
         </div>
     </nav>

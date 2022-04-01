@@ -51,10 +51,6 @@
   <!-- If you choose to use a favicon, specify the destination of the resource in href -->
   <link rel="icon" type="image/png" href="http://www.cs.virginia.edu/~up3f/cs4750/images/db-icon.png" />
   <style>
-    .container-lg {
-      background-color: white;
-    }
-
     h2 {
       color: white;
     }
