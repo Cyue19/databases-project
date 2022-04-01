@@ -13,11 +13,11 @@
 ////////////////////////////////////////////
 
 /** S22, PHP (on local XAMPP or CS server) connect to MySQL instance (GCP) **/
-$username = '';                      // or your username
+$username = 'root';                      // or your username
 $password = '';        // or your password
-$host = '';       // projectID = cs4750, SQL instance ID = db-demo
-$dbname = '';                   // database name = guestbook
-$dsn = "";       // connect PHP (XAMPP) to DB (GCP)
+$host = 'cs4750-s22:us-east4:project-db';       // projectID = cs4750, SQL instance ID = db-demo
+$dbname = 'project';                   // database name = guestbook
+$dsn = "mysql:host=34.86.14.27;dbname=$dbname";       // connect PHP (XAMPP) to DB (GCP)
 
 // to get public IP addres of the SQL instance, go to GCP SQL overview page
 
@@ -65,7 +65,7 @@ try
    $db = new PDO($dsn, $username, $password);
    
    // dispaly a message to let us know that we are connected to the database 
-   echo "<p style='color:white'>You are connected to the database</p>";
+   echo "<p>You are connected to the database</p>";
 }
 catch (PDOException $e)     // handle a PDO exception (errors thrown by the PDO library)
 {
