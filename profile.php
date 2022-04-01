@@ -30,16 +30,77 @@
         include("navBar.php");
     ?>
 
-    <div class="container">
-    <h1>My Profile</h1>  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
 
-    <!-- CDN for JS bootstrap -->
-    <!-- you may also use JS bootstrap to make the page dynamic -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    
-    <!-- for local -->
-    <!-- <script src="your-js-file.js"></script> -->  
-    
-    </div>    
+<div class="container">
+<div class="row">
+		<div class="col-12">
+			<!-- Page title -->
+			<div class="my-5">
+				<h3>Account</h3>
+				<hr>
+			</div>
+			<!-- Form START -->
+			<form class="file-upload">
+				<div class="row mb-5 gx-5">
+					<!-- account detail -->
+					<div class="col-xxl-8 mb-5 mb-xxl-0">
+						<div class="bg-secondary-soft px-4 py-5 rounded">
+							<div class="row g-3">
+								<h4 class="mb-4 mt-0">Account Details</h4>
+								<!-- First Name -->
+								<div class="col-md-6">
+									<label class="form-label">First Name:</label>
+									<input type="text" class="form-control" placeholder="" aria-label="First name" value="John">
+								</div>
+								<!-- Last name -->
+								<div class="col-md-6">
+									<label class="form-label">Last Name:</label>
+									<input type="text" class="form-control" placeholder="" aria-label="Last name" value="Smith">
+								</div>
+								<!-- Phone number -->
+								<div class="col-md-6">
+									<label class="form-label">Email:</label>
+									<input type="text" class="form-control" placeholder="" aria-label="Phone number" value="example@gmail.com">
+								</div>
+								<!-- Mobile number -->
+								<div class="col-md-6">
+									<label class="form-label">Password:</label>
+									<input type="text" class="form-control" placeholder="" aria-label="Phone number" value="********">
+								</div>
+							</div> <!-- Row END -->
+						</div>
+					</div>					
+          <!-- personal preferences -->
+					<div class="col-xxl-8 mb-5 mb-xxl-0">
+						<div class="bg-secondary-soft px-4 py-5 rounded">
+							<div class="row g-3">
+								<h4 class="mb-4 mt-0">Personal Preferences</h4>
+								<!-- First Name -->
+								<div class="col-md-12">
+									<label class="form-label">Favorite Genre:</label>
+									<input type="text" class="form-control" placeholder="" aria-label="First name" value="Comedy">
+								</div>
+								<!-- Last name -->
+								<div class="col-md-12">
+									<label class="form-label">Favorite Movie:</label>
+									<input type="text" class="form-control" placeholder="" aria-label="Last name" value="Star Wars">
+								</div>
+								<!-- Phone number -->
+								<div class="col-md-12">
+									<label class="form-label">Favorite Show:</label>
+									<input type="text" class="form-control" placeholder="" aria-label="Phone number" value="The Office">
+								</div>
+							</div> <!-- Row END -->
+						</div>
+					</div>
+				<!-- button -->
+				<div class="col text-center">
+					<button type="button" class="btn btn-primary">Update profile</button>
+				</div>
+			</form> <!-- Form END -->
+		</div>
+	</div>
+	</div>
 </body>
 </html>
