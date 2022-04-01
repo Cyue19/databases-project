@@ -3,7 +3,7 @@
 function getAllMedia()
 {
 	global $db;
-	$query = "select * from media";
+	$query = "select * from Media";
 	
     // good: use a prepared statement 
     // 1. prepare
@@ -75,12 +75,56 @@ function deleteFriend($mediaID)
 	$statement->closeCursor();
 }
 
+
+//for dropdowns
+function getYears() {
+	global $db;
+	$query = "SELECT DISTINCT releaseYear FROM Media ORDER BY releaseYear";
+	
+	$statement = $db->prepare($query);
+	$statement->execute();
+
+	$results = $statement->fetchAll();   
+	
+	$statement->closeCursor();
+
+	return $results;	
+}
+
+function getGenres() {
+	global $db;
+	$query = "SELECT DISTINCT genre FROM Media_Genre ORDER BY genre";
+	
+	$statement = $db->prepare($query);
+	$statement->execute();
+
+	$results = $statement->fetchAll();   
+	
+	$statement->closeCursor();
+
+	return $results;	
+}
+
+function getSeasons() {
+	global $db;
+	$query = "SELECT DISTINCT seasons FROM Shows ORDER BY seasons";
+	
+	$statement = $db->prepare($query);
+	$statement->execute();
+
+	$results = $statement->fetchAll();   
+	
+	$statement->closeCursor();
+
+	return $results;	
+}
+
 ### filtering and sorting media ###
 # sorting alphabetically (A to Z)
 function getMedia_AtoZ()
 {
 	global $db;
-	$query = "select title, description, rating from media order title asc";
+	$query = "SELECT title, description, rating FROM Media ORDER BY title ASC";
 	
     // 1. prepare
     // 2. bindValue & execute
@@ -98,7 +142,7 @@ function getMedia_AtoZ()
 function getMedia_ZtoA()
 {
 	global $db;
-	$query = "select title, description, rating from media order title desc";
+	$query = "SELECT title, description, rating FROM Media ORDER BY title DESC";
 	
     // 1. prepare
     // 2. bindValue & execute
@@ -116,7 +160,7 @@ function getMedia_ZtoA()
 function getMedia_lateDate()
 {
 	global $db;
-	$query = "select title, description, rating from media order releaseYear desc";
+	$query = "SELECT title, description, rating FROM Media ORDER BY releaseYear DESC";
 	
     // 1. prepare
     // 2. bindValue & execute
@@ -134,7 +178,7 @@ function getMedia_lateDate()
 function getMedia_earlyDate()
 {
 	global $db;
-	$query = "select title, description, rating from media order releaseYear asc";
+	$query = "SELECT title, description, rating FROM Media ORDER BY releaseYear ASC";
 	
     // 1. prepare
     // 2. bindValue & execute
@@ -152,55 +196,96 @@ function getMedia_earlyDate()
 function getMedia_year($releaseYear)
 {
 	global $db;
-	$query = "select title, description, rating from media where releaseYear=:releaseYear";
+	$query = "select title, description, rating from Media where releaseYear=:releaseYear";
 	$statement = $db->prepare($query); 
 	$statement->bindValue(':releaseYear', $releaseYear);
 	$statement->execute();
+	$results = $statement->fetchAll();
 	$statement->closeCursor();
+
+	return $results;
 }
 
 # filtering by genre
 function getMedia_genre($genre)
 {
 	global $db;
-	$query = "select title, description, rating from media_genre where genre=:genre";
+	$query = "SELECT * FROM Media_Genre NATURAL JOIN Media WHERE genre=:genre";
 	$statement = $db->prepare($query); 
 	$statement->bindValue(':genre', $genre);
 	$statement->execute();
+	$results = $statement->fetchAll();
 	$statement->closeCursor();
+
+	return $results;
 }
 
 # filtering by movie length
-function getMedia_movLen($time1, $time2)
+function getMedia_movieLen($time2)
 {
 	global $db;
-	$query = "select title, description, rating from movie where length between :time1 and :time2";
+	$time1 = $time2-60; 
+	$query = "SELECT title, description, rating FROM Movie NATURAL JOIN Media WHERE length BETWEEN :time1 and :time2";
 	$statement = $db->prepare($query); 
 	$statement->bindValue(':time1', $time1);
     $statement->bindValue(':time2', $time2);
 	$statement->execute();
+	$results = $statement->fetchAll();
 	$statement->closeCursor();
+
+	return $results;
 }
 
 # filtering by show/season length
 function getMedia_showLen($numSeasons)
 {
 	global $db;
-	$query = "select title, description, rating from shows where seasons=:numSeasons";
+	$query = "select title, description, rating from Shows NATURAL JOIN Media where seasons=:numSeasons";
 	$statement = $db->prepare($query); 
 	$statement->bindValue(':numSeasons', $numSeasons);
 	$statement->execute();
+	$results = $statement->fetchAll();
 	$statement->closeCursor();
+
+	return $results;
 }
 
 # filtering by rating
 function getMedia_rating($rating)
 {
 	global $db;
-	$query = "select title, description, rating from media where rating>=:rating";
+	if ($rating==="") {
+		return getAllMedia();
+	}
+
+	$query = "select title, description, rating from Media where rating>=:rating";
 	$statement = $db->prepare($query); 
 	$statement->bindValue(':rating', $rating);
 	$statement->execute();
+	$results = $statement->fetchAll();
 	$statement->closeCursor();
+
+	return $results;
 }
+
+# filtering by rating
+function getMedia_platform($platform)
+{
+	global $db;
+	if ($platform==="") {
+		return getAllMedia();
+	}
+
+	$query = "select title, description, rating from Media NATURAL JOIN Media_Platform WHERE platform=:platform";
+	$statement = $db->prepare($query); 
+	$statement->bindValue(':platform', $platform);
+	$statement->execute();
+	$results = $statement->fetchAll();
+	$statement->closeCursor();
+
+	return $results;
+}
+
+
 ?>
+
