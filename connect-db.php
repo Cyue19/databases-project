@@ -4,13 +4,13 @@
 ////////////////////////////////////////////
 /** S22, PHP (on Google Standard App Engine) connect to MySQL instance (GCP) **/
 // $username = 'root';                      // or your username
-// $password = '';        // or your password
-// $host = 'cs4750-s22:us-east4:project-db';       // projectID = cs4750, SQL instance ID = db-demo
-// $dbname = 'project';                   // database name = guestbook
-// $dsn = "mysql:unix_socket=/cloudsql/cs4750-s22:us-east4:project-db;dbname=project";
+// $password = 'your-root-password';        // or your password
+// $host = 'cs4750:us-east4:db-demo';       // projectID = cs4750, SQL instance ID = db-demo
+// $dbname = 'guestbook';                   // database name = guestbook
+// $dsn = "mysql:unix_socket=/cloudsql/cs4750:us-east4:db-demo;dbname=guestbook";
 
 // to get instance connection name, go to GCP SQL overview page
-//////////////////////////////////////////
+////////////////////////////////////////////
 
 /** S22, PHP (on local XAMPP or CS server) connect to MySQL instance (GCP) **/
 $username = 'root';                      // or your username
@@ -65,7 +65,7 @@ try
    $db = new PDO($dsn, $username, $password);
    
    // dispaly a message to let us know that we are connected to the database 
-   echo "<p>You are connected to the database</p>";
+   echo "<p style='color:white'>You are connected to the database</p>";
 }
 catch (PDOException $e)     // handle a PDO exception (errors thrown by the PDO library)
 {
