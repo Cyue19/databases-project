@@ -1,7 +1,7 @@
 <?php
 global $db
 $filename = 'export.csv';
-// fputcsv($output, array('ID', 'Title', 'Description', 'Rating')); 
+
 
 $query = $db->query("SELECT mediaID, title, description, rating FROM Media"); 
  

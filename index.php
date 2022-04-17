@@ -115,7 +115,11 @@
         <div class="col-6"></div>
 
         <div class="col">
-            <a href="export.php" class="btn btn-warning"><i class="dwn" ></i> Export</a>
+            <a href="import.php" class="btn btn-warning"> Import</a>
+        </div>
+
+        <div class="col">
+            <a href="export_all.php" class="btn btn-warning"><i class="dwn" ></i> Export</a>
         </div>
 
         <div class="col">
