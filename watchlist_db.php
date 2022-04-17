@@ -33,8 +33,6 @@ function getWatchlist($type)
 	$statement->bindValue(':username', $_SESSION['user']);
 	$statement->execute();
 
-	echo $type;
-
 	// fetchAll() returns an array of all rows in the result set
 	$results = $statement->fetchAll();   
 

@@ -35,6 +35,10 @@
     saveToList($_GET['save'], 2);
     $loc = "./media_page.php?id=".$_GET['id']; 
     header('Location: '.$loc);
+  } else if (isset($_GET['save']) && $_GET['save']==="watching") {
+    saveToList($_GET['save'], 3);
+    $loc = "./media_page.php?id=".$_GET['id']; 
+    header('Location: '.$loc);
   }
 
 ?>
@@ -78,6 +82,13 @@
         $endpoint = "media_page.php?id=" . $media[0]['mediaID'];
         $endpoint .= "&save=wishlist";
         echo "    <a class='btn btn-primary' href='$endpoint' >Wishlist</a>";
+    }
+    ?>
+
+    <?php if (isset($_SESSION["user"])) {
+        $endpoint = "media_page.php?id=" . $media[0]['mediaID'];
+        $endpoint .= "&save=watching";
+        echo "    <a class='btn btn-primary' href='$endpoint' >Watching</a>";
     }
     ?>
    

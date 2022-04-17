@@ -6,12 +6,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <meta name="author" content="your name">
-  <meta name="description" content="include some description about your page">  
-  
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  
   
   <!-- If you choose to use a favicon, specify the destination of the resource in href -->
   <link rel="icon" type="image/png" href="http://www.cs.virginia.edu/~up3f/cs4750/images/db-icon.png" />
@@ -21,37 +16,35 @@
   <!-- <link rel="stylesheet" href="custom.css" />  -->
        
 </head>
-
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
+    <nav class="navbar navbar-expand-md navbar-light" style="background-color: #440E79">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Expand at md</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarsExample04">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <a class="navbar-brand text-white" href="#">SSDB</a>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">browse</a>
+                        <a class="nav-link active text-white" aria-current="page" href="index.php">browse</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">continue watching</a>
+                        <a class="nav-link text-white" href="watch_again.php">watch again</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link">wishlist</a>
+                        <a class="nav-link text-white" href="cont_watch.php">continue watching</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="profile.php">my profile</a>
+                        <a class="nav-link text-white" href="wishlist.php">wishlist</a>
                     </li>
                 </ul>
-                <?php
-                    if (!isset($_SESSION["user"])) {
-                        echo '<a href="login.php" class="btn btn-primary">Sign In</a>';
-                    } else {
-                        echo '<a href="logout.php" class="btn btn-primary">Sign Out</a>';
-                    }
-                ?>
+                
+                <form>
+                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                </form>
+                
+                <li>
+                    <a href="profile.php">
+                        <i class="fas fa-user-circle fa-2x" style="color: white;"></i>
+                    </a>
+                </li>
             </div>
         </div>
     </nav>
