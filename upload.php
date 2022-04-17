@@ -1,8 +1,7 @@
 <?php
-$target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$filename = $_FILES["fileToUpload"]["name"];
 $uploadOk = 1;
-$fileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+$fileType = strtolower(pathinfo($filename,PATHINFO_EXTENSION));
 // Check if image file is a actual image or fake image
 if(isset($_POST["submit"])) {
   if($fileType != "csv") {
