@@ -99,14 +99,19 @@ function getFirstName() {
     global $db;
 
     //insert sql statement
-    $query = "SELECT firstName FROM User WHERE username=:username";
+    $query = "SELECT firstName FROM Account WHERE username=:username";
 
     //prepare, bind, and execute sql query
     $statement = $db->prepare($query);
     $statement->bindValue(":username", $_SESSION["user"]);
 
+    $statement->execute();
+    $results = $statement->fetch();
+
     //release the hold
     $statement->closeCursor();
+
+    return $results['firstName'];
 }
 
 function getLastName() {
@@ -114,18 +119,18 @@ function getLastName() {
     global $db;
 
     //insert sql statement
-    $query = "SELECT lastName FROM User WHERE username=:username";
+    $query = "SELECT lastName FROM Account WHERE username=:username";
 
     //prepare, bind, and execute sql query
     $statement = $db->prepare($query);
     $statement->bindValue(":username", $_SESSION["user"]);
 
-    $results = $statement->fetchAll();
+    $statement->execute();
+    $results = $statement->fetch();
 
-    //release the hold
     $statement->closeCursor();
 
-    return results;
+    return $results['lastName'];
 }
 
 function getEmail() {
@@ -133,18 +138,18 @@ function getEmail() {
     global $db;
 
     //insert sql statement
-    $query = "SELECT email FROM User WHERE username=:username";
+    $query = "SELECT email FROM Account WHERE username=:username";
 
     //prepare, bind, and execute sql query
     $statement = $db->prepare($query);
     $statement->bindValue(":username", $_SESSION["user"]);
 
-    $results = $statement->fetchAll();
+    $statement->execute();
+    $results = $statement->fetch();
 
-    //release the hold
     $statement->closeCursor();
 
-    return results;
+    return $results['email'];
 }
 
 function updateProfile($username, $firstName, $lastName, $email) {
@@ -161,12 +166,13 @@ function updateProfile($username, $firstName, $lastName, $email) {
     $statement->bindValue(":lastname", $lastName);
     $statement->bindValue(":email", $email);
 
-    $results = $statement->fetchAll();
+    $statement->execute();
+    $results = $statement->fetch();
 
     //release the hold
     $statement->closeCursor();
 
-    return results;
+    return $results;
 }
 
 ?>

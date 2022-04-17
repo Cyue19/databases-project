@@ -1,3 +1,14 @@
+<?php
+require("connect-db.php");
+require("account_db.php");
+session_start();
+
+$firstName = getFirstName();
+$lastName = getLastName();
+$email = getEmail();
+
+?>
+
 <!-- 1. create HTML5 doctype -->
 <!DOCTYPE html>
 <html>
@@ -51,22 +62,22 @@
 							<!-- First Name -->
 							<div class="col-md-6">
 								<label class="form-label">First Name:</label>
-								<input type="text" class="form-control" placeholder="" aria-label="First name" value="** INSERT HERE **">
+								<input type="text" class="form-control" placeholder="" aria-label="First name" value="<?php echo $firstName ?>">
 							</div>
 							<!-- Last name -->
 							<div class="col-md-6">
 								<label class="form-label">Last Name:</label>
-								<input type="text" class="form-control" placeholder="" aria-label="Last name" value="** INSERT HERE **">
+								<input type="text" class="form-control" placeholder="" aria-label="Last name" value="<?php echo $lastName ?>">
 							</div>
 							<!-- username -->
 							<div class="col-md-6">
 								<label class="form-label">Username:</label>
-								<input type="text" class="form-control" placeholder="" aria-label="Username" value="** INSERT HERE **" disabled>
+								<input type="text" class="form-control" placeholder="" aria-label="Username" value="<?php echo $_SESSION['user'] ?>" disabled>
 							</div>
 							<!-- email -->
 							<div class="col-md-6">
 								<label class="form-label">Email:</label>
-								<input type="text" class="form-control" placeholder="" aria-label="Email" value="** INSERT HERE **">
+								<input type="text" class="form-control" placeholder="" aria-label="Email" value="<?php echo $email ?>">
 							</div>
 						</div> <!-- Row END -->
 					</div>
