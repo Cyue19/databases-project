@@ -11,8 +11,6 @@ session_start();
         <meta charset="UTF-8">  
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="author" content="CS4750">
-        <meta name="description" content="CS4750 Login Page">  
 
         <title>Import Data</title>
 
@@ -55,9 +53,10 @@ session_start();
                                             <form action="upload.php" method="post" enctype="multipart/form-data">
                                               Select CSV to upload with additional data:
                                               <input type="file" name="fileToUpload" id="fileToUpload">
+                                              <br><br>
                                               <input type="submit" value="Upload file" name="submit">
                                             </form>
-                                        </h6><br><br>
+                                        </h6>
                                     </div>
                                 </div> <!-- Row END -->
                             </div>
