@@ -1,3 +1,13 @@
+<?php
+  include("connect-db.php");
+  include("watchlist_db.php");
+
+  global $db;
+  session_start();
+
+  $list = getWatchlist("watching");
+?>
+
 <!-- 1. create HTML5 doctype -->
 <!DOCTYPE html>
 <html>
@@ -28,6 +38,16 @@
 			<h3>Continute Watching</h3>
 			<hr>
 		</div>
+
+    <?php if (empty($list)) {
+        echo "<div style='color: white'> No items saved yet </div>";
+      }
+      ?>
+
+      <?php foreach ($list as $media): ?>
+        <div> <a href="media_page.php?id=<?php echo $media['mediaID'] ?>" > <?php echo $media["title"]; ?> </a> </div>
+      <?php endforeach; ?>
+    </div>
 </div>
 </div>
 </body>

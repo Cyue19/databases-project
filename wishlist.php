@@ -1,3 +1,13 @@
+<?php
+  include("connect-db.php");
+  include("watchlist_db.php");
+
+  global $db;
+  session_start();
+
+  $list = getWatchlist("wishlist");
+?>
+
 <!-- 1. create HTML5 doctype -->
 <!DOCTYPE html>
 <html>
@@ -24,10 +34,20 @@
 <div class="container">
 <div class="row justify-content-md-center">
 	<div class="col-10 text-white" style="background-color: #091436">
-        <div class="my-5">
+    <div class="my-5">
 			<h3>Wishlist</h3>
 			<hr>
 		</div>
+    <div>
+      <?php if (empty($list)) {
+        echo "<div style='color: white'> No items saved yet </div>";
+      }
+      ?>
+
+      <?php foreach ($list as $media): ?>
+        <div> <a href="media_page.php?id=<?php echo $media['mediaID'] ?>" > <?php echo $media["title"]; ?> </a> </div>
+      <?php endforeach; ?>
+    </div>
 </div>
 </div>
 </body>
