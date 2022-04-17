@@ -47,7 +47,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="wishlist.php">log out</a>
+                    <a class="nav-link text-white" href="logout.php">log out</a>
                 </li>
 
             </div>
