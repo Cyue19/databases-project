@@ -37,40 +37,50 @@
 	<div class="col-10 text-white" style="background-color: #091436">
 		<!-- Page title -->
 		<div class="my-5">
-			<h3>My Account</h3>
+			<h3>Edit Account</h3>
 			<hr>
 		</div>
-
-		<div class="row mb-5 gx-5">
-			<!-- account detail -->
-			<div class="col-xxl-8 mb-5 mb-xxl-0">
-				<div class="bg-secondary-soft px-4 py-5 rounded">
-					<div class="row g-3">
-						<h4 class="mb-4 mt-0">Account Details</h4>
-						<!-- left column -->
-						<div class="col-md-6">
-							<h6 class="mb-0">First Name:</h6><br><br>
-							<h6 class="mb-0">Last Name:</h6><br><br>
-							<h6 class="mb-0">Username:</h6><br><br>
-							<h6 class="mb-0">Email: </h6>
-						</div>
-						<!-- right column -->
-						<div class="col-md-6">
-							<h6 class="mb-0">***** FIRST NAME HERE ***** </h6><br><br>
-							<h6 class="mb-0">***** LAST NAME HERE ***** </h6><br><br>
-							<h6 class="mb-0">***** USERNAME HERE *****</h6><br><br>
-							<h6 class="mb-0">***** EMAIL HERE ***** </h6><br><br>
-						</div>
-					</div> <!-- Row END -->
-				</div>
-			</div>					
+		<!-- Form START -->
+		<form class="file-upload">
+			<div class="row mb-5 gx-5">
+				<!-- account detail -->
+				<div class="col-xxl-8 mb-5 mb-xxl-0">
+					<div class="bg-secondary-soft px-4 py-5 rounded">
+						<div class="row g-3">
+							<h4 class="mb-4 mt-0">Account Details</h4>
+							<!-- First Name -->
+							<div class="col-md-6">
+								<label class="form-label">First Name:</label>
+								<input type="text" class="form-control" placeholder="" aria-label="First name" value="** INSERT HERE **">
+							</div>
+							<!-- Last name -->
+							<div class="col-md-6">
+								<label class="form-label">Last Name:</label>
+								<input type="text" class="form-control" placeholder="" aria-label="Last name" value="** INSERT HERE **">
+							</div>
+							<!-- username -->
+							<div class="col-md-6">
+								<label class="form-label">Username:</label>
+								<input type="text" class="form-control" placeholder="" aria-label="Username" value="** INSERT HERE **" disabled>
+							</div>
+							<!-- email -->
+							<div class="col-md-6">
+								<label class="form-label">Email:</label>
+								<input type="text" class="form-control" placeholder="" aria-label="Email" value="** INSERT HERE **">
+							</div>
+						</div> <!-- Row END -->
+					</div>
+				</div>					
 			<!-- button -->
 			<div class="col text-center">
-				<a role="button" class="btn btn-secondary" href="edit_prof.php">Edit Profile</a>
+				<a role="button" class="btn btn-primary" href="profile.php">Update profile</a>
 			</div>
+			<div class="col text-center">
+				<a role="button" class="btn btn-secondary" href="profile.php">Cancel</a>
+			</div>
+		</form> <!-- Form END -->
 		</div>
 	</div>
-</div>
-</div>
+	</div>
 </body>
 </html>

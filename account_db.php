@@ -94,5 +94,79 @@ function logout() {
     header('Location: http://localhost/cs4750/databases-project/login.php');
 }
 
+function getFirstName() {
+    //db handler from connect-db
+    global $db;
+
+    //insert sql statement
+    $query = "SELECT firstName FROM User WHERE username=:username";
+
+    //prepare, bind, and execute sql query
+    $statement = $db->prepare($query);
+    $statement->bindValue(":username", $_SESSION["user"]);
+
+    //release the hold
+    $statement->closeCursor();
+}
+
+function getLastName() {
+    //db handler from connect-db
+    global $db;
+
+    //insert sql statement
+    $query = "SELECT lastName FROM User WHERE username=:username";
+
+    //prepare, bind, and execute sql query
+    $statement = $db->prepare($query);
+    $statement->bindValue(":username", $_SESSION["user"]);
+
+    $results = $statement->fetchAll();
+
+    //release the hold
+    $statement->closeCursor();
+
+    return results;
+}
+
+function getEmail() {
+    //db handler from connect-db
+    global $db;
+
+    //insert sql statement
+    $query = "SELECT email FROM User WHERE username=:username";
+
+    //prepare, bind, and execute sql query
+    $statement = $db->prepare($query);
+    $statement->bindValue(":username", $_SESSION["user"]);
+
+    $results = $statement->fetchAll();
+
+    //release the hold
+    $statement->closeCursor();
+
+    return results;
+}
+
+function updateProfile($username, $firstName, $lastName, $email) {
+    //db handler from connect-db
+    global $db;
+
+    //insert sql statement
+    $query = "UPDATE User SET (firstName=:firstName, lastName=:lastName, email=:email) WHERE username=:username";
+
+    //prepare, bind, and execute sql query
+    $statement = $db->prepare($query);
+    $statement->bindValue(":username", $_SESSION["user"]);
+    $statement->bindValue(":firstname", $firstName);
+    $statement->bindValue(":lastname", $lastName);
+    $statement->bindValue(":email", $email);
+
+    $results = $statement->fetchAll();
+
+    //release the hold
+    $statement->closeCursor();
+
+    return results;
+}
 
 ?>
