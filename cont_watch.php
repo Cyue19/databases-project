@@ -35,7 +35,7 @@
 <div class="row justify-content-md-center">
 	<div class="col-10 text-white" style="background-color: #091436">
         <div class="my-5">
-			<h3>Continute Watching</h3>
+			<h3>Continue Watching</h3>
 			<hr>
 		</div>
 
@@ -45,7 +45,7 @@
       ?>
 
       <?php foreach ($list as $media): ?>
-        <div> <a href="media_page.php?id=<?php echo $media['mediaID'] ?>" > <?php echo $media["title"]; ?> </a> </div>
+        <div class="mb-3" > <a style="color: white" href="media_page.php?id=<?php echo $media['mediaID'] ?>" > <?php echo $media["title"]; ?></a></div>
       <?php endforeach; ?>
     </div>
 </div>
