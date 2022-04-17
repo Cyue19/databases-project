@@ -45,6 +45,11 @@
                         <i class="fas fa-user-circle fa-2x" style="color: white;"></i>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="wishlist.php">log out</a>
+                </li>
+
             </div>
         </div>
     </nav>
