@@ -10,8 +10,6 @@
   $seasons = getSeasons();
   session_start();
 
-  echo $_SESSION["user"];
-
   if(isset($_POST["yearReleased"])) {
     // echo $_POST["yearReleased"];
     $mediaList = getMedia_year($_POST["yearReleased"]);
