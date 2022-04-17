@@ -1,3 +1,14 @@
+<?php
+require("connect-db.php");
+require("account_db.php");
+session_start();
+
+$firstName = getFirstName();
+$lastName = getLastName();
+$email = getEmail();
+
+?>
+
 <!-- 1. create HTML5 doctype -->
 <!DOCTYPE html>
 <html>
@@ -56,10 +67,10 @@
 						</div>
 						<!-- right column -->
 						<div class="col-md-6">
-							<h6 class="mb-0">***** FIRST NAME HERE ***** </h6><br><br>
-							<h6 class="mb-0">***** LAST NAME HERE ***** </h6><br><br>
-							<h6 class="mb-0">***** USERNAME HERE *****</h6><br><br>
-							<h6 class="mb-0">***** EMAIL HERE ***** </h6><br><br>
+							<h6 class="mb-0"><?php echo $firstName ?></h6><br><br>
+							<h6 class="mb-0"><?php echo $lastName ?></h6><br><br>
+							<h6 class="mb-0"><?php echo $_SESSION['user'] ?></h6><br><br>
+							<h6 class="mb-0"><?php echo $email ?></h6><br><br>
 						</div>
 					</div> <!-- Row END -->
 				</div>
