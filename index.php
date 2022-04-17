@@ -113,6 +113,15 @@
           <h2>Browse</h2>
         </div>
         <div class="col-6"></div>
+
+        <div class="col">
+            <a href="import.php" class="btn btn-warning"> Import</a>
+        </div>
+
+        <div class="col">
+            <a href="export_all.php" class="btn btn-warning"><i class="dwn" ></i> Export</a>
+        </div>
+
         <div class="col">
           <form method="post">
             <select class="form-select" id="sort" name="sort" onchange="this.form.submit()">
