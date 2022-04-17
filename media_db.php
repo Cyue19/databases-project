@@ -315,7 +315,7 @@ function getMediaItem($mediaID)
 {
 	global $db;
 
-	$query = "select mediaID, title, description, rating from Media  WHERE mediaID=:mediaID";
+	$query = "select * from Media  WHERE mediaID=:mediaID";
 	$statement = $db->prepare($query); 
 	$statement->bindValue(':mediaID', $mediaID);
 	$statement->execute();

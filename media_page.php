@@ -25,7 +25,70 @@
       $statement->closeCursor();
   }
 
-  echo print_r($_GET);
+  function findTypeAndLength($mediaID) {
+    global $db;
+
+	$query = "SELECT * FROM Movie NATURAL JOIN Media WHERE mediaID=:mediaID";
+
+	$statement = $db->prepare($query); 
+	$statement->bindValue(':mediaID', $mediaID);
+	$statement->execute();
+	$results = $statement->fetch();
+
+	$statement->closeCursor();
+
+	if (empty($results)) {
+        $query = "SELECT * FROM Shows NATURAL JOIN Media WHERE mediaID=:mediaID";
+
+        $statement = $db->prepare($query); 
+        $statement->bindValue(':mediaID', $mediaID);
+        $statement->execute();
+        $results = $statement->fetch();
+    
+        $statement->closeCursor();
+        if (empty($results)) {
+            return "N/A";
+        } else {
+            if ($results['seasons']===1) {
+                return $results['seasons'] . " season";
+            } else {
+                return $results['seasons'] . " seasons";
+            }
+        }
+    } else {
+        return $results['length'] . " minutes";
+    }
+  }
+
+  function getMediaPlatform($mediaID) {
+    global $db;
+
+	$query = "SELECT * FROM Media_Platform NATURAL JOIN Media WHERE mediaID=:mediaID";
+
+	$statement = $db->prepare($query); 
+	$statement->bindValue(':mediaID', $mediaID);
+	$statement->execute();
+	$results = $statement->fetch();
+
+	$statement->closeCursor();
+
+    if (empty($results)) {
+        return "N/A";
+    } else {
+        return $results['platform'];
+    }
+  }
+
+  $platform = getMediaPlatform($media[0]['mediaID']);
+  $length = findTypeAndLength($media[0]['mediaID']);
+  $type = "";
+  if ($length==="N/A") {
+    $type = "N/A";
+  } else if (strpos($length, "minute")) {
+      $type = "Movie";
+  } else if (strpos($length, "season")) {
+      $type = "Show";
+  }
 
   if (isset($_GET['save']) && $_GET['save']==="watch_again") {
     saveToList($_GET['save'], 1);
@@ -75,8 +138,6 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
 
-    <?php echo $media[0]["title"] ?>
-
     <?php if (isset($_SESSION["user"])) {
         $endpoint = "media_page.php?id=" . $media[0]['mediaID'];
         $endpoint .= "&save=watch_again";
@@ -103,7 +164,7 @@
 	<div class="col-10 text-white" style="background-color: #091436">
 		<!-- Page title -->
 		<div class="my-5">
-			<h3>***** MEDIA NAME HERE *****</h3>
+			<h3><?php echo $media[0]["title"] ?></h3>
 			<hr>
 		</div>  
     <div class="row mb-5 gx-5">
@@ -111,11 +172,11 @@
 				<div class="col-xxl-8 mb-5 mb-xxl-0">
 					<div class="bg-secondary-soft rounded">
 						<div class="row g-3">
-							<h4 class="mb-4 mt-0">Type: ***** INSERT TYPE HERE ***** </h4>
-							<h4 class="mb-4 mt-0">Rating: ***** INSERT RATING HERE ***** </h4>
-							<h4 class="mb-4 mt-0">Duration: ***** INSERT DURATION HERE ***** </h4>
-							<h4 class="mb-4 mt-0">Release Year: ***** INSERT RELEASE YEAR HERE ***** </h4>
-							<h4 class="mb-4 mt-0">Available on: ***** INSERT STREAMING SERVICE HERE ***** </h4>
+							<h4 class="mb-4 mt-0">Type: <?php echo $type ?> </h4>
+							<h4 class="mb-4 mt-0">Rating: <?php echo $media[0]["rating"] ?> </h4>
+							<h4 class="mb-4 mt-0">Duration: <?php echo $length ?> </h4>
+							<h4 class="mb-4 mt-0">Release Year: <?php echo $media[0]["releaseYear"] ?></h4>
+							<h4 class="mb-4 mt-0">Available on: <?php echo $platform ?> </h4>
             </div>
           </div>
         </div>
