@@ -79,6 +79,45 @@
     }
   }
 
+  function fetchReviews($mediaID) {
+    global $db;
+
+	$query = "SELECT * FROM Review WHERE mediaID=:mediaID";
+
+	$statement = $db->prepare($query); 
+	$statement->bindValue(':mediaID', $mediaID);
+	$statement->execute();
+	$results = $statement->fetchAll();
+
+	$statement->closeCursor();
+
+    return $results;
+  }
+
+  function createReview($mediaID) {
+    global $db;
+    echo "create review";
+    
+    //insert sql statement
+    $query = "INSERT INTO Review VALUES (:username, NOW(), :mediaID, :userRating, :description)";
+
+    $statement = $db->prepare($query);
+
+    if (isset($_SESSION['user'])) {
+        $statement->bindValue(":username", $_SESSION['user']);
+    } else {
+        $statement->bindValue(":username", "Anonymous");
+    }
+
+    $statement->bindValue(":mediaID", $mediaID);
+    $statement->bindValue(":userRating", $_POST['userRating']);
+    $statement->bindValue(":description", $_POST['description']);
+
+    $result = $statement->execute();
+
+    $statement->closeCursor();
+  }
+
   $platform = getMediaPlatform($media[0]['mediaID']);
   $length = findTypeAndLength($media[0]['mediaID']);
   $type = "";
@@ -103,6 +142,17 @@
     $loc = "./media_page.php?id=".$_GET['id']; 
     header('Location: '.$loc);
   }
+
+  if (isset($_GET['review']) && $_GET['review']) {
+    createReview($media[0]['mediaID']);
+    $loc = "./media_page.php?id=".$_GET['id']; 
+    header('Location: '.$loc);
+  }
+
+  $reviews = fetchReviews($media[0]['mediaID']);
+
+  $reviewEndPoint = "media_page.php?id=" . $media[0]['mediaID'];
+  $reviewEndPoint .= "&review=true";
 
 ?>
 
@@ -173,7 +223,6 @@
 					<div class="bg-secondary-soft rounded">
 						<div class="row g-3">
 							<h4 class="mb-4 mt-0">Type: <?php echo $type ?> </h4>
-							<h4 class="mb-4 mt-0">Rating: <?php echo $media[0]["rating"] ?> </h4>
 							<h4 class="mb-4 mt-0">Duration: <?php echo $length ?> </h4>
 							<h4 class="mb-4 mt-0">Release Year: <?php echo $media[0]["releaseYear"] ?></h4>
 							<h4 class="mb-4 mt-0">Available on: <?php echo $platform ?> </h4>
@@ -191,49 +240,74 @@
 					<div class="bg-secondary-soft rounded">
 						<div class="row g-3">
 							<h4 class="mb-4 mt-0">Average User Rating: </h4>
-              <h4 class="mb-4 mt-0 bold padding-bottom-7">4.3 <small>/ 5</small></h4>
+              <h4 class="mb-4 mt-0 bold padding-bottom-7"><?php echo $media[0]["rating"] ?> <small>/ 5.00</small></h4>
               <hr>
               <h4 class="mb-4 mt-0">Write a Review: </h4>
-          <form>
+              <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Write a Review
+        </button>
+
+          <hr>
+          <!-- user reviews -->
+          <h4 class="mb-4 mt-0">Reviews: </h4>
+          <?php
+            if (empty($reviews)) {
+                echo "No reviews yet";
+            }
+          ?>
+
+          <?php foreach ($reviews as $review): ?>
+            <div class="review p-4">
+              <div class="row d-flex">
+                  <div class="d-flex flex-column pl-2">
+                      <h4><?php echo $review['username']; ?> (<?php echo $review['userRating']; ?>/5.00) </h4>
+                      <p class="grey-text"><?php echo $review['timeStamp']; ?></p>
+                  </div>
+              </div>
+
+              <div class="row pb-3">
+                <h6 class="mb-0 pl-3"><?php echo $review['description']; ?> </h6>
+              </div>
+            </div>
+          <?php endforeach; ?>
+
+
+
+              </div>
+		  </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" style="color: black" id="exampleModalLabel">Write Review</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form action="<?php echo $reviewEndPoint ?>" method="POST">
             <!-- Rating input -->
             <div class="form-outline mb-4">
-            <label class="form-label" for="form4Example1">Rating</label>
-            <select class="form-select" aria-label="Default select example">
-              <option selected>-</option>
-              <option value="1">1</option>
-              <option value="1">1.5</option>
-              <option value="2">2</option>
-              <option value="1">2.5</option>
-              <option value="3">3</option>
-              <option value="1">3.5</option>
-              <option value="1">4</option>
-              <option value="1">4.5</option>
-              <option value="1">5</option>
-            </select>
+                <label style="color: black" class="form-label" for="form4Example1">Rating</label>
+                <input type="number" id="userRating" name="userRating" class="form-control" step="0.01" min="1" max="5">
             </div>
             <!-- Message input -->
             <div class="form-outline mb-4">
-              <label class="form-label" for="form4Example3">Description</label>
-              <textarea class="form-control" id="form4Example3" rows="4"></textarea>
+              <label style="color: black" class="form-label" for="form4Example3">Description</label>
+              <textarea name="description" class="form-control" id="form4Example3" rows="4"></textarea>
             </div>
-            <!-- Submit button -->
-            <button type="submit" class="btn btn-secondary btn-block mb-4">Submit</button>
-          </form><hr>
-          <!-- user reviews -->
-          <h4 class="mb-4 mt-0">Reviews: </h4>
-          <div class="review p-4">
-              <div class="row d-flex">
-                  <div class="d-flex flex-column pl-2">
-                      <h4>John Smith (4/5) </h4>
-                      <p class="grey-text">4/17/2022</p>
-                  </div>
-              </div>
-              <div class="row pb-3">
-                      <h6 class="mb-0 pl-3">blah blah blah yay this was so good  </h6>
-                  </div>
-              </div>
-          </div>
-		  </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-block" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-secondary btn-block">Submit</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
    
 
   <!-- CDN for JS bootstrap -->

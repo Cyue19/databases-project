@@ -5,8 +5,6 @@
   global $db;
   session_start();
 
-  echo $_SESSION["user"];
-
   $list = getWatchlist("watch_again");
 ?>
 
@@ -47,7 +45,7 @@
       ?>
 
       <?php foreach ($list as $media): ?>
-        <div> <a href="media_page.php?id=<?php echo $media['mediaID'] ?>" > <?php echo $media["title"]; ?> </a> </div>
+        <div class="mb-3"> <a style="color: white" href="media_page.php?id=<?php echo $media['mediaID'] ?>" > <?php echo $media["title"]; ?> </a> </div>
       <?php endforeach; ?>
     </div>
 </div>
