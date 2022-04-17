@@ -8,21 +8,59 @@
   $years = getYears();
   $genres = getGenres();
   $seasons = getSeasons();
+  session_start();
+
+  echo $_SESSION["user"];
 
   if(isset($_POST["yearReleased"])) {
     // echo $_POST["yearReleased"];
     $mediaList = getMedia_year($_POST["yearReleased"]);
+    // if ($where==="") {
+    //   $where .= "releaseYear=:releaseYear ";
+    // } else {
+    //   $where .= "AND releaseYear=:releaseYear ";
+    // }
+    // $vals["releaseYear"] = $_POST["yearReleased"];
   } else if (isset($_POST["genre"])) {
-    echo $_POST["genre"];
     $mediaList = getMedia_genre($_POST["genre"]);
+    // if ($where==="") {
+    //   $where .= "genre=:genre ";
+    // } else {
+    //   $where .= "AND genre=:genre ";
+    // }
+    // $vals["genre"] = $_POST["genre"];
   } else if (isset($_POST["rating"])) {
     $mediaList = getMedia_rating($_POST["rating"]);
+    // if ($where==="") {
+    //   $where .= "rating=:rating ";
+    // } else {
+    //   $where .= "AND rating=:rating ";
+    // }
+    // $vals["rating"] = $_POST["rating"];
   } else if (isset($_POST["platform"])) {
     $mediaList = getMedia_platform($_POST["platform"]);
+    // if ($where==="") {
+    //   $where .= "platform=:platform ";
+    // } else {
+    //   $where .= "AND platform=:platform ";
+    // }
+    // $vals["genre"] = $_POST["genre"];
   } else if (isset($_POST["showLength"])) {
     $mediaList = getMedia_showLen($_POST["showLength"]);
+    // if ($where==="") {
+    //   $where .= "genre=:genre ";
+    // } else {
+    //   $where .= "AND genre=:genre ";
+    // }
+    // $vals["genre"] = $_POST["genre"];
   } else if (isset($_POST["movieLength"])) {
     $mediaList = getMedia_movieLen($_POST["movieLength"]);
+    // if ($where==="") {
+    //   $where .= "genre=:genre ";
+    // } else {
+    //   $where .= "AND genre=:genre ";
+    // }
+    // $vals["genre"] = $_POST["genre"];
   } else if (isset($_POST["sort"])) {
     if ($_POST["sort"] === "abc asc") {
       $mediaList = getMedia_AtoZ();
@@ -34,6 +72,12 @@
       $mediaList = getMedia_lateDate();
     }
   }
+
+  // if ($where !== "") {
+  //   $where .= ";";
+  //   $mediaList = filterMedia($where, $vals);
+  //   echo $where;
+  // }
 ?>
 
 <!DOCTYPE html>
@@ -165,16 +209,17 @@
     <table style="width:100%">
       <thead>
           <tr style="background-color:#B0B0B0">
-              <th width="15%">Title</th>   
-              <!-- <th width="35%">Description</th>        
+              <th width="10%">Title</th>   
+              <th width="35%">Description</th>        
               <th width="5%">Rating</th> 
-              <th width="5%">Watchlist</th>  -->
           </tr>
       </thead>
       <tbody>
         <?php foreach ($mediaList as $media): ?>
           <tr>
-              <td> <?php echo $media["title"]; ?> </td>
+              <td> <a href="media_page.php?id=<?php echo $media['mediaID'] ?>" > <?php echo $media["title"]; ?> </a> </td>
+              <td> <?php echo $media["description"]; ?> </td>
+              <td> <?php echo $media["rating"]; ?> </td>
           </tr>
         <?php endforeach; ?>
       </tbody>

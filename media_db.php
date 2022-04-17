@@ -124,7 +124,7 @@ function getSeasons() {
 function getMedia_AtoZ()
 {
 	global $db;
-	$query = "SELECT title, description, rating FROM Media ORDER BY title ASC";
+	$query = "SELECT mediaID, title, description, rating FROM Media ORDER BY title ASC";
 	
     // 1. prepare
     // 2. bindValue & execute
@@ -142,7 +142,7 @@ function getMedia_AtoZ()
 function getMedia_ZtoA()
 {
 	global $db;
-	$query = "SELECT title, description, rating FROM Media ORDER BY title DESC";
+	$query = "SELECT mediaID, title, description, rating FROM Media ORDER BY title DESC";
 	
     // 1. prepare
     // 2. bindValue & execute
@@ -160,7 +160,7 @@ function getMedia_ZtoA()
 function getMedia_lateDate()
 {
 	global $db;
-	$query = "SELECT title, description, rating FROM Media ORDER BY releaseYear DESC";
+	$query = "SELECT mediaID, title, description, rating FROM Media ORDER BY releaseYear DESC";
 	
     // 1. prepare
     // 2. bindValue & execute
@@ -178,7 +178,7 @@ function getMedia_lateDate()
 function getMedia_earlyDate()
 {
 	global $db;
-	$query = "SELECT title, description, rating FROM Media ORDER BY releaseYear ASC";
+	$query = "SELECT mediaID, title, description, rating FROM Media ORDER BY releaseYear ASC";
 	
     // 1. prepare
     // 2. bindValue & execute
@@ -192,11 +192,35 @@ function getMedia_earlyDate()
 	return $results;	
 }
 
+// function filterMedia($where, $vals) {
+// 	global $db;
+// 	$query = "SELECT mediaID, title, description, rating FROM Media ";
+
+// 	if (strpos($where, "genre=:genre")) {
+// 		$query .= "NATURAL JOIN Media_Genre ";
+// 	}
+
+// 	$query .= "WHERE " . $where;
+// 	echo $query;
+// 	echo print_r($vals);
+// 	$statement = $db->prepare($query); 
+// 	foreach ($vals as $key => $value) {
+// 		$statement->bindValue($key, $value);
+// 		echo $key;
+// 		echo $value;
+// 	}
+// 	$statement->execute();
+// 	$results = $statement->fetchAll();
+// 	$statement->closeCursor();
+
+// 	return $results;
+// }
+
 # filtering by year
 function getMedia_year($releaseYear)
 {
 	global $db;
-	$query = "select title, description, rating from Media where releaseYear=:releaseYear";
+	$query = "select mediaID, title, description, rating from Media where releaseYear=:releaseYear";
 	$statement = $db->prepare($query); 
 	$statement->bindValue(':releaseYear', $releaseYear);
 	$statement->execute();
@@ -210,7 +234,7 @@ function getMedia_year($releaseYear)
 function getMedia_genre($genre)
 {
 	global $db;
-	$query = "SELECT * FROM Media_Genre NATURAL JOIN Media WHERE genre=:genre";
+	$query = "SELECT mediaID, title, description, rating FROM Media_Genre NATURAL JOIN Media WHERE genre=:genre";
 	$statement = $db->prepare($query); 
 	$statement->bindValue(':genre', $genre);
 	$statement->execute();
@@ -225,7 +249,7 @@ function getMedia_movieLen($time2)
 {
 	global $db;
 	$time1 = $time2-60; 
-	$query = "SELECT title, description, rating FROM Movie NATURAL JOIN Media WHERE length BETWEEN :time1 and :time2";
+	$query = "SELECT mediaID, title, description, rating FROM Movie NATURAL JOIN Media WHERE length BETWEEN :time1 and :time2";
 	$statement = $db->prepare($query); 
 	$statement->bindValue(':time1', $time1);
     $statement->bindValue(':time2', $time2);
@@ -240,7 +264,7 @@ function getMedia_movieLen($time2)
 function getMedia_showLen($numSeasons)
 {
 	global $db;
-	$query = "select title, description, rating from Shows NATURAL JOIN Media where seasons=:numSeasons";
+	$query = "select mediaID, title, description, rating from Shows NATURAL JOIN Media where seasons=:numSeasons";
 	$statement = $db->prepare($query); 
 	$statement->bindValue(':numSeasons', $numSeasons);
 	$statement->execute();
@@ -258,7 +282,7 @@ function getMedia_rating($rating)
 		return getAllMedia();
 	}
 
-	$query = "select title, description, rating from Media where rating>=:rating";
+	$query = "select mediaID, title, description, rating from Media where rating>=:rating";
 	$statement = $db->prepare($query); 
 	$statement->bindValue(':rating', $rating);
 	$statement->execute();
@@ -276,9 +300,24 @@ function getMedia_platform($platform)
 		return getAllMedia();
 	}
 
-	$query = "select title, description, rating from Media NATURAL JOIN Media_Platform WHERE platform=:platform";
+	$query = "select mediaID, title, description, rating from Media NATURAL JOIN Media_Platform WHERE platform=:platform";
 	$statement = $db->prepare($query); 
 	$statement->bindValue(':platform', $platform);
+	$statement->execute();
+	$results = $statement->fetchAll();
+	$statement->closeCursor();
+
+	return $results;
+}
+
+//get specific media item
+function getMediaItem($mediaID)
+{
+	global $db;
+
+	$query = "select mediaID, title, description, rating from Media  WHERE mediaID=:mediaID";
+	$statement = $db->prepare($query); 
+	$statement->bindValue(':mediaID', $mediaID);
 	$statement->execute();
 	$results = $statement->fetchAll();
 	$statement->closeCursor();
