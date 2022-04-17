@@ -36,8 +36,8 @@
                     </li>
                 </ul>
                 
-                <form>
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                <form action="./search.php" method="POST">
+                	<input name="titleQuery" id="titleQuery" class="form-control" type="text" placeholder="Search" aria-label="Search">
                 </form>
                 
                 <li>
