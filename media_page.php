@@ -122,7 +122,7 @@
       </div>
 		<!-- ratings -->
     <div class="my-5">
-			<h3>RATINGS</h3>
+			<h3>REVIEWS</h3>
 			<hr>
 		</div>  
     <div class="row">
