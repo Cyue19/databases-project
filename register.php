@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <div class="container pt-3">
             <div class="mt-5 px-5 pb-5 pt-3 registerCard">
                 <h1 class="mb-3" style="text-align: center">Create Account</h1>
-                <p style="text-align: center">Need an admin account? Make one <a style="color: #BD00FF" href="register.php">here</a></p>                <form action="register.php" method="POST">
+                <p style="text-align: center">Need an admin account? Make one <a style="color: #BD00FF" href="admin_register.php">here</a></p>                <form action="register.php" method="POST">
                     <div class="row">
                         <div class="col-6 mb-3">
                             <label for="firstName" class="form-label">First Name:</label>
