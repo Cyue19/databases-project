@@ -47,7 +47,13 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="logout.php">log out</a>
+					<?php 
+						if (isset($_SESSION["user"])) {
+							echo "<a class='nav-link text-white' href='logout.php'>log out</a>";
+						} else {
+							echo "<a class='nav-link text-white' href='login.php'>log in</a>";
+						}
+					?>
                 </li>
 
             </div>
