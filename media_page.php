@@ -168,7 +168,7 @@
   <meta name="author" content="your name">
   <meta name="description" content="include some description about your page">  
     
-  <title>My Profile</title>
+  <title>Media Description</title>
   
   <!-- 3. link bootstrap -->
   <!-- if you choose to use CDN for CSS bootstrap -->  
