@@ -64,6 +64,37 @@ function addUser($username, $firstName, $lastName, $email, $password, $birthDate
     return $success;
 }
 
+function addAdmin($username, $firstName, $lastName, $email, $password, $company, $role) {
+    //db handler from connect-db
+    global $db;
+
+    $success = addAccount($username, $firstName, $lastName, $email, $password);
+
+    if ($success) {
+        //insert sql statement
+        $query = "INSERT INTO Admin VALUES (:username, :company, :role)";
+
+        //prepare, bind, and execute sql query
+        $statement = $db->prepare($query);
+        $statement->bindValue(":username", $username);
+        $statement->bindValue(":birthDate", $company);
+        $statement->bindValue(":gender", $role);
+
+        $result = $statement->execute();
+        
+        //release the hold
+        $statement->closeCursor();
+
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    return $success;
+}
+
 function login($username, $password) {
     //db handler from connect-db
     global $db;
