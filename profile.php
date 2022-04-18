@@ -50,6 +50,7 @@ $email = getEmail();
 		<div class="my-5">
 			<h3>My Account</h3>
 			<hr>
+			<a role="button" class="btn btn-primary" href="./search_hist.php">View Search History</a>
 		</div>
 
 		<div class="row mb-5 gx-5">
@@ -78,7 +79,6 @@ $email = getEmail();
 			<!-- button -->
 			<div class="col text-center">
 				<a role="button" class="btn btn-secondary" href="edit_prof.php">Edit Profile</a>
-				<a role="button" class="btn btn-primary" href="./search_hist.php">View Search History</a>
 			</div>
 		</div>
 	</div>
