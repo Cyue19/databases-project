@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		<form class="file-upload" action="" method="POST">
 			<div class="row mb-5 gx-5">
 				<!-- account detail -->
-				<div class="col-xxl-8 mb-5 mb-xxl-0">
+				<div class="col-12 mb-5 mb-xxl-0">
 					<div class="bg-secondary-soft px-4 py-5 rounded">
 						<div class="row g-3">
 							<h4 class="mb-4 mt-0">Account Details</h4>
@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			<!-- button -->
 			<div class="col text-center">
 				<!-- <button type="submit" class="btn btn-primary">Update profile</button> -->
-				<input type="submit" value="update" name="btnAction" class="btn btn-primary" title="Update profile" />   
+				<button type="submit" value="update" name="btnAction" class="btn btn-primary">Update Profile</button>   
 			</div>
 			<div class="col text-center">
 				<a role="button" class="btn btn-secondary" href="profile.php">Cancel</a>

@@ -116,27 +116,28 @@
 	<div class="col-10 text-white" style="background-color: #091436">
 		<!-- Page title -->
 		<div class="my-5">
-			<h3>My Account</h3>
+			<h3>Browse</h3>
 			<hr>
-		  <a href="import.php" class="btn btn-warning"> Import</a>
+      <a href="import.php" class="btn btn-primary"> Import</a><hr>
+      <div class="col-2 text-right">
+      <form method="post">
+          <select class="form-select" id="sort" name="sort" onchange="this.form.submit()">
+              <option selected>Sort By</option>
+              <option value="abc asc">Alphabetical (Ascending)</option>
+              <option value="abc desc">Alphabetical (Descending)</option>
+              <option value="date desc">By Release Date (Most Recent)</option>
+              <option value="date asc">By Release Date (Least Recent)</option>
+          </select>
+        </form>
+      </div>
     </div>
 
     <div class="row mb-5 gx-5">
 				<!-- media detail -->
-				<div class="col-xxl-8 mb-5 mb-xxl-0">
+				<div class="col-12 mb-5 mb-xxl-0">
 					<div class="bg-secondary-soft rounded">
 						<div class="row g-3">
-              <form method="post">
-                <select class="form-select" id="sort" name="sort" onchange="this.form.submit()">
-                    <option selected>Sort By</option>
-                    <option value="abc asc">Alphabetical (Ascending)</option>
-                    <option value="abc desc">Alphabetical (Descending)</option>
-                    <option value="date desc">By Release Date (Most Recent)</option>
-                    <option value="date asc">By Release Date (Least Recent)</option>
-                </select>
-              </form>
-              <hr>
-              
+              <div class="col-2">
               <form method="POST">
                 <select class="form-select" id="yearReleased" name="yearReleased" onchange="this.form.submit()">
                   <option selected>Year Released</option>
@@ -145,7 +146,9 @@
                   <?php endforeach; ?>
                 </select>
               </form>
+              </div>
 
+              <div class="col-2">
               <form method="post">
                 <select class="form-select" aria-label="genre" name="genre" onchange="this.form.submit()"> 
                   <option selected>Genre</option>
@@ -154,7 +157,9 @@
                   <?php endforeach; ?>
                 </select>
               </form>
+              </div>
 
+              <div class="col-2">
               <form method="POST">
                 <select class="form-select" aria-label="rating" name="rating" onchange="this.form.submit()">
                   <option value="" selected>Rating</option>
@@ -165,7 +170,9 @@
                   <option value=5>5.0</option>
                 </select>
               </form>
+              </div>
 
+              <div class="col-2">
               <form method="POST">
                 <select class="form-select" aria-label="platform" name="platform" onchange="this.form.submit()">
                   <option selected>Streaming Service</option>
@@ -175,7 +182,9 @@
                   <option value="disney">Disney Plus</option>
                 </select>
               </form>
+              </div>
             
+              <div class="col-2">
               <form method="POST">
                 <select class="form-select" aria-label="showLength" name="showLength" onchange="this.form.submit()">
                   <option selected>Show Length</option>
@@ -192,7 +201,9 @@
                   <?php endforeach; ?>
                 </select>
               </form>
+              </div>
 
+              <div class="col-2">
               <form method="POST">
                 <select class="form-select" aria-label="movieLength" name="movieLength" onchange="this.form.submit()">
                   <option selected>Movie Length</option>
@@ -202,6 +213,7 @@
                   <option value=240>3 - 4 hours</option>
                 </select>
               </form>
+              </div>
 
               <table class="table table-striped table-dark">
                 <thead>

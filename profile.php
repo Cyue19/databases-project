@@ -55,7 +55,7 @@ $email = getEmail();
 
 		<div class="row mb-5 gx-5">
 			<!-- account detail -->
-			<div class="col-xxl-8 mb-5 mb-xxl-0">
+			<div class="col-12 mb-5 mb-xxl-0">
 				<div class="bg-secondary-soft px-4 py-5 rounded">
 					<div class="row g-3">
 						<h4 class="mb-4 mt-0">Account Details</h4>
@@ -77,7 +77,7 @@ $email = getEmail();
 				</div>
 				<!-- button -->
 				<div class="col text-center">
-					<a role="button" class="btn btn-secondary" href="edit_prof.php">Edit Profile</a>
+					<a role="button" class="btn btn-primary" href="edit_prof.php">Edit Profile</a>
 				</div>
 			</div>					
 		</div>
