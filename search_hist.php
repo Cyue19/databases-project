@@ -1,3 +1,13 @@
+<?php
+    require("connect-db.php");
+    session_start();
+
+    $query = "CALL getSearchHistory('" . $_SESSION['user'] . "')";
+    $statement = $db->prepare($query);
+    $results = $statement->execute();
+    $results = $statement->fetchAll();
+?>
+
 <!-- 1. create HTML5 doctype -->
 <!DOCTYPE html>
 <html>
@@ -30,8 +40,6 @@
         include("navBar.php");
     ?>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
-
 <div class="container">
 <div class="row justify-content-md-center">
 	<div class="col-10 text-white" style="background-color: #091436">
@@ -42,10 +50,17 @@
 		</div>
         <table class="table table-striped table-dark">
             <tbody>
-                <tr>
-                <td class="col-10"><h5>search hist<h5></td>
-                <td><h5>time stamp<h5></td>
-                </tr>
+                <?php foreach ($results as $search): ?>
+                    <tr>
+                        <td class="col-10"><h4><?php echo $search["searchQuery"]; ?><h5></td>
+                        <td><h5><?php echo $search["searchTime"]; ?><h5></td>
+                    </tr>
+                <?php endforeach; ?>
+
+                <?php if (empty($results)) {
+                    echo "<div style='color: white'> No searches yet </div>";
+                }
+                ?>
             </tbody>
         </table>
     </div>

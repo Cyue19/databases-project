@@ -22,8 +22,8 @@ if(isset($_POST["submit"])) {
     while (($getData = fgetcsv($file, 10000, ",")) !== FALSE) {
       // put sql commands and stuff here
 
-      $sql = "INSERT into Media (emp_id,firstname,lastname,email,reg_date) 
-           values ('".$getData[0]."','".$getData[1]."','".$getData[2]."','".$getData[3]."','".$getData[4]."')";
+      $sql = "INSERT into Media (mediaID, title, director, country, description, 0, releaseYear) 
+           values ('".$getData[0]."','".$getData[1]."','".$getData[2]."','".$getData[3]."','".$getData[4]."', '".$getData[5]."')";
       $result = mysqli_query($db, $sql);
       if(!isset($result)) {
         echo "<script type=\"text/javascript\">
