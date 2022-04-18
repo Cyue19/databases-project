@@ -119,10 +119,6 @@
         </div>
 
         <div class="col">
-            <a href="export_all.php" class="btn btn-warning"><i class="dwn" ></i> Export</a>
-        </div>
-
-        <div class="col">
           <form method="post">
             <select class="form-select" id="sort" name="sort" onchange="this.form.submit()">
                 <option selected>Sort By</option>

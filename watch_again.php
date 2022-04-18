@@ -45,6 +45,7 @@
     <div class="my-5">
         <h3>Watch Again</h3>
         <hr>
+        <a href="export_all.php" class="btn btn-primary"><i class="dwn" ></i> Export</a>
     </div>
     <div>
 
