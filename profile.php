@@ -75,11 +75,11 @@ $email = getEmail();
 						</div>
 					</div> <!-- Row END -->
 				</div>
+				<!-- button -->
+				<div class="col text-center">
+					<a role="button" class="btn btn-secondary" href="edit_prof.php">Edit Profile</a>
+				</div>
 			</div>					
-			<!-- button -->
-			<div class="col text-center">
-				<a role="button" class="btn btn-secondary" href="edit_prof.php">Edit Profile</a>
-			</div>
 		</div>
 	</div>
 </div>
