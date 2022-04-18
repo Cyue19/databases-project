@@ -118,27 +118,25 @@
 		<div class="my-5">
 			<h3>My Account</h3>
 			<hr>
-		</div>
-        <div class="col-6"></div>
-            <a href="import.php" class="btn btn-warning"> Import</a>
-        </div>
+		  <a href="import.php" class="btn btn-warning"> Import</a>
+    </div>
 
-        <div class="col">
-          <form method="post">
-            <select class="form-select" id="sort" name="sort" onchange="this.form.submit()">
-                <option selected>Sort By</option>
-                <option value="abc asc">Alphabetical (Ascending)</option>
-                <option value="abc desc">Alphabetical (Descending)</option>
-                <option value="date desc">By Release Date (Most Recent)</option>
-                <option value="date asc">By Release Date (Least Recent)</option>
-            </select>
-          </form>
-        </div>
-
-        <hr id="divider"class="bg-danger border-2 border-top">
-
-        <div class="row">
-          <div class="col text-white">
+    <div class="row mb-5 gx-5">
+				<!-- media detail -->
+				<div class="col-xxl-8 mb-5 mb-xxl-0">
+					<div class="bg-secondary-soft rounded">
+						<div class="row g-3">
+              <form method="post">
+                <select class="form-select" id="sort" name="sort" onchange="this.form.submit()">
+                    <option selected>Sort By</option>
+                    <option value="abc asc">Alphabetical (Ascending)</option>
+                    <option value="abc desc">Alphabetical (Descending)</option>
+                    <option value="date desc">By Release Date (Most Recent)</option>
+                    <option value="date asc">By Release Date (Least Recent)</option>
+                </select>
+              </form>
+              <hr>
+              
               <form method="POST">
                 <select class="form-select" id="yearReleased" name="yearReleased" onchange="this.form.submit()">
                   <option selected>Year Released</option>
@@ -147,9 +145,7 @@
                   <?php endforeach; ?>
                 </select>
               </form>
-          </div>
 
-          <div class="col">
               <form method="post">
                 <select class="form-select" aria-label="genre" name="genre" onchange="this.form.submit()"> 
                   <option selected>Genre</option>
@@ -158,83 +154,77 @@
                   <?php endforeach; ?>
                 </select>
               </form>
-          </div>
 
-          <div class="col">
-            <form method="POST">
-              <select class="form-select" aria-label="rating" name="rating" onchange="this.form.submit()">
-                <option value="" selected>Rating</option>
-                <option value=1>1.0 and Up</option>
-                <option value=2>2.0 and Up</option>
-                <option value=3>3.0 and Up</option>
-                <option value=4>4.0 and Up</option>
-                <option value=5>5.0</option>
-              </select>
-            </form>
-          </div>
+              <form method="POST">
+                <select class="form-select" aria-label="rating" name="rating" onchange="this.form.submit()">
+                  <option value="" selected>Rating</option>
+                  <option value=1>1.0 and Up</option>
+                  <option value=2>2.0 and Up</option>
+                  <option value=3>3.0 and Up</option>
+                  <option value=4>4.0 and Up</option>
+                  <option value=5>5.0</option>
+                </select>
+              </form>
 
-          <div class="col">
-            <form method="POST">
-              <select class="form-select" aria-label="platform" name="platform" onchange="this.form.submit()">
-                <option selected>Streaming Service</option>
-                <option value="amazon">Amazon Prime Video</option>
-                <option value="netflix">Netflix</option>
-                <option value="hulu">Hulu</option>
-                <option value="disney">Disney Plus</option>
-              </select>
-            </form>
-          </div>
+              <form method="POST">
+                <select class="form-select" aria-label="platform" name="platform" onchange="this.form.submit()">
+                  <option selected>Streaming Service</option>
+                  <option value="amazon">Amazon Prime Video</option>
+                  <option value="netflix">Netflix</option>
+                  <option value="hulu">Hulu</option>
+                  <option value="disney">Disney Plus</option>
+                </select>
+              </form>
+            
+              <form method="POST">
+                <select class="form-select" aria-label="showLength" name="showLength" onchange="this.form.submit()">
+                  <option selected>Show Length</option>
+                  <?php foreach ($seasons as $season): ?>
+                    <option value=<?php echo $season["seasons"]; ?>>
+                      <?php echo $season["seasons"]; ?> 
+                      <?php if($season["seasons"]==1) {
+                        echo "Season";
+                      } else {
+                        echo "Seasons";
+                      }
+                      ?>
+                    </option>
+                  <?php endforeach; ?>
+                </select>
+              </form>
 
-          <div class="col">
-            <form method="POST">
-              <select class="form-select" aria-label="showLength" name="showLength" onchange="this.form.submit()">
-                <option selected>Show Length</option>
-                <?php foreach ($seasons as $season): ?>
-                  <option value=<?php echo $season["seasons"]; ?>>
-                    <?php echo $season["seasons"]; ?> 
-                    <?php if($season["seasons"]==1) {
-                      echo "Season";
-                    } else {
-                      echo "Seasons";
-                    }
-                    ?>
-                  </option>
-                <?php endforeach; ?>
-              </select>
-            </form>
-          </div>
+              <form method="POST">
+                <select class="form-select" aria-label="movieLength" name="movieLength" onchange="this.form.submit()">
+                  <option selected>Movie Length</option>
+                  <option value=60>Less than 1 hour</option>
+                  <option value=120>1 - 2 hours</option>
+                  <option value=180>2 - 3 hours</option>
+                  <option value=240>3 - 4 hours</option>
+                </select>
+              </form>
 
-          <div class="col">
-            <form method="POST">
-              <select class="form-select" aria-label="movieLength" name="movieLength" onchange="this.form.submit()">
-                <option selected>Movie Length</option>
-                <option value=60>Less than 1 hour</option>
-                <option value=120>1 - 2 hours</option>
-                <option value=180>2 - 3 hours</option>
-                <option value=240>3 - 4 hours</option>
-              </select>
-            </form>
+              <table class="table table-striped table-dark">
+                <thead>
+                    <tr style="text-black background-color: white">
+                        <th width="10%">Title</th>   
+                        <th width="35%">Description</th>        
+                        <th width="5%">Rating</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                  <?php foreach ($mediaList as $media): ?>
+                    <tr>
+                        <td> <a href="media_page.php?id=<?php echo $media['mediaID'] ?>" > <?php echo $media["title"]; ?> </a> </td>
+                        <td> <?php echo $media["description"]; ?> </td>
+                        <td> <?php echo $media["rating"]; ?> </td>
+                    </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table> 
+            </div>  
           </div>
-    </div> 
-    <table style="width:100%">
-      <thead>
-          <tr style="background-color:#B0B0B0">
-              <th width="10%">Title</th>   
-              <th width="35%">Description</th>        
-              <th width="5%">Rating</th> 
-          </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($mediaList as $media): ?>
-          <tr>
-              <td> <a href="media_page.php?id=<?php echo $media['mediaID'] ?>" > <?php echo $media["title"]; ?> </a> </td>
-              <td> <?php echo $media["description"]; ?> </td>
-              <td> <?php echo $media["rating"]; ?> </td>
-          </tr>
-        <?php endforeach; ?>
-      </tbody>
-    </table> 
-  </div>    
+        </div>
+      </div>  
    
 
   <!-- CDN for JS bootstrap -->
