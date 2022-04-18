@@ -6,10 +6,10 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (!empty($_POST["btnAction"]) && $_POST["btnAction"]=="Create") {
         //add user
-        $result = addUser($_POST["username"], $_POST["firstName"], $_POST["lastName"], $_POST["email"], $_POST["password"], $_POST["birthDate"], $_POST["gender"]);
+        $result = addAdmin($_POST["username"], $_POST["firstName"], $_POST["lastName"], $_POST["email"], $_POST["password"], $_POST["company"], $_POST["role"]);
         if (isset($result)) {
             if ($result) {
-                header('Location: ./index.php');
+                header('Location: http://localhost/cs4750/databases-project/index.php');
             } else {
                 $err = "Could not create account";
             }
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <div class="container pt-3">
             <div class="mt-5 px-5 pb-5 pt-3 registerCard">
                 <h1 class="mb-3" style="text-align: center">Create Account</h1>
-                <p style="text-align: center">Need an admin account? Make one <a style="color: #BD00FF" href="admin_register.php">here</a></p>                <form action="register.php" method="POST">
+                <form action="register.php" method="POST">
                     <div class="row">
                         <div class="col-6 mb-3">
                             <label for="firstName" class="form-label">First Name:</label>
@@ -58,12 +58,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                     <div class="row">
                         <div class="col-6 mb-3">
-                            <label for="birthDate" class="form-label">Birth date</label>
-                            <input type="date" class="form-control" id="birthDate" name="birthDate"/>
+                            <label for="birthDate" class="form-label">Company</label>
+                            <input type="text" class="form-control" id="company" name="company"/>
                         </div>
                         <div class="col-6 mb-3">
-                            <label for="gender" class="form-label">Gender</label>
-                            <input type="text" class="form-control" id="gender" name="gender"/>
+                            <label for="gender" class="form-label">Role</label>
+                            <input type="text" class="form-control" id="role" name="role"/>
                         </div>
                     </div>
 
