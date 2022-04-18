@@ -190,27 +190,6 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
 
-    <?php if (isset($_SESSION["user"])) {
-        $endpoint = "media_page.php?id=" . $media[0]['mediaID'];
-        $endpoint .= "&save=watch_again";
-        echo "    <a class='btn btn-primary' href='$endpoint' >Watch Again</a>";
-    }
-    ?>
-
-    <?php if (isset($_SESSION["user"])) {
-        $endpoint = "media_page.php?id=" . $media[0]['mediaID'];
-        $endpoint .= "&save=wishlist";
-        echo "    <a class='btn btn-primary' href='$endpoint' >Wishlist</a>";
-    }
-    ?>
-
-    <?php if (isset($_SESSION["user"])) {
-        $endpoint = "media_page.php?id=" . $media[0]['mediaID'];
-        $endpoint .= "&save=watching";
-        echo "    <a class='btn btn-primary' href='$endpoint' >Watching</a>";
-    }
-    ?>
-
 <div class="container">
 <div class="row justify-content-md-center">
 	<div class="col-10 text-white" style="background-color: #091436">
@@ -218,6 +197,28 @@
 		<div class="my-5">
 			<h3><?php echo $media[0]["title"] ?></h3>
 			<hr>
+
+      <?php if (isset($_SESSION["user"])) {
+        $endpoint = "media_page.php?id=" . $media[0]['mediaID'];
+        $endpoint .= "&save=watch_again";
+        echo "    <a class='btn btn-primary' href='$endpoint' >+ Watch Again</a>";
+    }
+    ?>
+
+    <?php if (isset($_SESSION["user"])) {
+        $endpoint = "media_page.php?id=" . $media[0]['mediaID'];
+        $endpoint .= "&save=wishlist";
+        echo "    <a class='btn btn-primary' href='$endpoint' >+ Wishlist</a>";
+    }
+    ?>
+
+    <?php if (isset($_SESSION["user"])) {
+        $endpoint = "media_page.php?id=" . $media[0]['mediaID'];
+        $endpoint .= "&save=watching";
+        echo "    <a class='btn btn-primary' href='$endpoint' >+ Watching</a>";
+    }
+    ?>
+
 		</div>  
     <div class="row mb-5 gx-5">
 				<!-- media detail -->
