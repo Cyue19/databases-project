@@ -82,7 +82,7 @@
   function fetchReviews($mediaID) {
     global $db;
 
-	$query = "SELECT * FROM Review WHERE mediaID=:mediaID";
+	$query = "SELECT * FROM Review WHERE mediaID=:mediaID ORDER BY timeStamp DESC";
 
 	$statement = $db->prepare($query); 
 	$statement->bindValue(':mediaID', $mediaID);
