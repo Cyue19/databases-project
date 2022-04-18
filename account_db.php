@@ -157,17 +157,16 @@ function updateProfile($username, $firstName, $lastName, $email) {
     global $db;
 
     //insert sql statement
-    $query = "UPDATE User SET (firstName=:firstName, lastName=:lastName, email=:email) WHERE username=:username";
+    $query = "UPDATE Account SET firstName=:firstName, lastName=:lastName, email=:email WHERE username=:username";
 
     //prepare, bind, and execute sql query
     $statement = $db->prepare($query);
     $statement->bindValue(":username", $_SESSION["user"]);
-    $statement->bindValue(":firstname", $firstName);
-    $statement->bindValue(":lastname", $lastName);
+    $statement->bindValue(":firstName", $firstName);
+    $statement->bindValue(":lastName", $lastName);
     $statement->bindValue(":email", $email);
 
-    $statement->execute();
-    $results = $statement->fetch();
+    $results = $statement->execute();
 
     //release the hold
     $statement->closeCursor();

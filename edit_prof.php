@@ -7,6 +7,16 @@ $firstName = getFirstName();
 $lastName = getLastName();
 $email = getEmail();
 
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    if (!empty($_POST["btnAction"]) && $_POST["btnAction"]=="update") {
+        //log in to website
+        $res = updateProfile($_SESSION['user'], $_POST["firstName"], $_POST["lastName"], $_POST["email"]);
+		if ($res) {
+			header('Location: ./profile.php');
+		}
+    }
+}
+
 ?>
 
 <!-- 1. create HTML5 doctype -->
@@ -52,7 +62,7 @@ $email = getEmail();
 			<hr>
 		</div>
 		<!-- Form START -->
-		<form class="file-upload">
+		<form class="file-upload" action="" method="POST">
 			<div class="row mb-5 gx-5">
 				<!-- account detail -->
 				<div class="col-xxl-8 mb-5 mb-xxl-0">
@@ -62,12 +72,12 @@ $email = getEmail();
 							<!-- First Name -->
 							<div class="col-md-6">
 								<label class="form-label">First Name:</label>
-								<input type="text" class="form-control" placeholder="" aria-label="First name" value="<?php echo $firstName ?>">
+								<input name="firstName" type="text" class="form-control" placeholder="" aria-label="First name" value="<?php echo $firstName ?>">
 							</div>
 							<!-- Last name -->
 							<div class="col-md-6">
 								<label class="form-label">Last Name:</label>
-								<input type="text" class="form-control" placeholder="" aria-label="Last name" value="<?php echo $lastName ?>">
+								<input name="lastName" type="text" class="form-control" placeholder="" aria-label="Last name" value="<?php echo $lastName ?>">
 							</div>
 							<!-- username -->
 							<div class="col-md-6">
@@ -77,14 +87,15 @@ $email = getEmail();
 							<!-- email -->
 							<div class="col-md-6">
 								<label class="form-label">Email:</label>
-								<input type="text" class="form-control" placeholder="" aria-label="Email" value="<?php echo $email ?>">
+								<input name="email" type="text" class="form-control" placeholder="" aria-label="Email" value="<?php echo $email ?>">
 							</div>
 						</div> <!-- Row END -->
 					</div>
 				</div>					
 			<!-- button -->
 			<div class="col text-center">
-				<a role="button" class="btn btn-primary" href="profile.php">Update profile</a>
+				<!-- <button type="submit" class="btn btn-primary">Update profile</button> -->
+				<input type="submit" value="update" name="btnAction" class="btn btn-primary" title="Update profile" />   
 			</div>
 			<div class="col text-center">
 				<a role="button" class="btn btn-secondary" href="profile.php">Cancel</a>

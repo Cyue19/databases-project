@@ -1,11 +1,16 @@
 <?php
-global $db
+require("connect-db.php");
+global $db;
+session_start();
 $filename = 'export.csv';
 
+$query = "SELECT mediaID, title, description, rating FROM Media NATURAL JOIN WatchList WHERE username=? AND type=?;";
+$type = "watch_again";
 
-$query = $db->query("SELECT mediaID, title, description, rating FROM Media"); 
+$result = $db->prepare($query); 
+$result->execute(array($_SESSION['user'], $type));
  
-if($query->num_rows > 0){ 
+if($result->rowCount() > 0){ 
     $delimiter = ","; 
      
     // Create a file pointer 
@@ -16,7 +21,8 @@ if($query->num_rows > 0){
     fputcsv($f, $fields, $delimiter); 
      
     // Output each row of the data, format line as csv and write to file pointer 
-    while($row = $query->fetch_assoc()){ 
+    // $row = $result->fetch(PDO::FETCH_ASSOC);
+    while($row = $result->fetch(PDO::FETCH_ASSOC)){ 
         $lineData = array($row['mediaID'], $row['title'], $row['description'], $row['rating']); 
         fputcsv($f, $lineData, $delimiter); 
     } 
