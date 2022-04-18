@@ -1,4 +1,6 @@
 <?php
+include("connect-db.php");
+echo $_FILES["fileToUpload"]["name"];
 $filename = $_FILES["fileToUpload"]["name"];
 $uploadOk = 1;
 $fileType = strtolower(pathinfo($filename,PATHINFO_EXTENSION));
@@ -22,12 +24,30 @@ if(isset($_POST["submit"])) {
     while (($getData = fgetcsv($file, 10000, ",")) !== FALSE) {
       // put sql commands and stuff here
 
-      $sql = "INSERT into Media (mediaID, title, director, country, description, 0, releaseYear) 
-           values ('".$getData[0]."','".$getData[1]."','".$getData[2]."','".$getData[3]."','".$getData[4]."', '".$getData[5]."')";
-      $result = mysqli_query($db, $sql);
+              //insert sql statement
+              $query = "INSERT INTO Media (mediaID, title, director, country, description, rating, releaseYear) 
+              values (:mediaID, :title, :director, :country, :description, :rating, :releaseYear)";
+    
+              //prepare, bind, and execute sql query
+              $statement = $db->prepare($query);
+      
+              $statement->bindValue(":mediaID", $getData[0]);
+              $statement->bindValue(":title", $getData[1]);
+              $statement->bindValue(":director", $getData[2]);
+              $statement->bindValue(":country", $getData[3]);
+              $statement->bindValue(":description", $getData[4]);
+              $statement->bindValue(":rating", 0);
+              $statement->bindValue(":releaseYear", $getData[5]);
+          
+              $result = $statement->execute();
+              
+              //release the hold
+              $statement->closeCursor();
+
+      echo $result;
       if(!isset($result)) {
         echo "<script type=\"text/javascript\">
-            alert(\"Invalid File:Please Upload CSV File.\");
+            alert(\"Invalid File:Please Upload CSV File.\");\
             window.location = \"index.php\"
             </script>";    
       }

@@ -17,7 +17,6 @@ function addAccount($username, $firstName, $lastName, $email, $password) {
         $statement->bindValue(":firstName", $firstName);
         $statement->bindValue(":lastName", $lastName);
         $statement->bindValue(":email", $email);
-        echo password_hash($password, PASSWORD_DEFAULT);
         $statement->bindValue(":password", password_hash($password, PASSWORD_DEFAULT));
     
         $result = $statement->execute();
