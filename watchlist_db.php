@@ -41,5 +41,22 @@ function getWatchlist($type)
 	return $results;
 }
 
+function deleteWatchlist($username, $mediaID, $type)
+{
+	global $db;
+	$query = "delete from WatchList where username=:username AND mediaID=:mediaID AND type=:type";
+	
+    // good: use a prepared statement 
+    // 1. prepare
+    // 2. bindValue & execute
+	$statement = $db->prepare($query);
+	$statement->bindValue(':username', $_SESSION['user']);
+	$statement->bindValue(':mediaID', $mediaID);
+    $statement->bindValue(':type', $type);
+	$statement->execute();
+
+	$statement->closeCursor();
+}
+
 ?>
 
