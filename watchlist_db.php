@@ -23,7 +23,7 @@ function addWatchlist($username, $listID, $mediaID, $type, $index)
 function getWatchlist($type)
 {
 	global $db;
-	$query = "select title from WatchList NATURAL JOIN Media where type=:type AND username=:username";
+	$query = "select title, mediaID from WatchList NATURAL JOIN Media where type=:type AND username=:username";
 	
     // good: use a prepared statement 
     // 1. prepare
@@ -53,7 +53,7 @@ function deleteWatchlist($username, $mediaID, $type)
 	$statement->bindValue(':username', $_SESSION['user']);
 	$statement->bindValue(':mediaID', $mediaID);
     $statement->bindValue(':type', $type);
-	$statement->execute();
+	$result = $statement->execute();
 
 	$statement->closeCursor();
 }

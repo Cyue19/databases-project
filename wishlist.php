@@ -6,6 +6,14 @@
   session_start();
 
   $list = getWatchlist("wishlist");
+
+  if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    if (!empty($_POST["btnAction"]) && $_POST["btnAction"]=="delete media") {
+        //delete media from watchlist
+        deleteWatchlist($_SESSION['user'], $_POST['mediaID'], "wishlist");
+        $list = getWatchlist("wishlist");
+    }
+  }
 ?>
 
 <!-- 1. create HTML5 doctype -->
@@ -39,14 +47,29 @@
 			<hr>
 		</div>
     <div>
-      <?php if (empty($list)) {
-        echo "<div style='color: white'> No items saved yet </div>";
-      }
-      ?>
 
-      <?php foreach ($list as $media): ?>
-        <div class="mb-3" > <a style="color: white" href="media_page.php?id=<?php echo $media['mediaID'] ?>" > <?php echo $media["title"]; ?> </a> </div>
-      <?php endforeach; ?>
+      <table class="table table-striped table-dark">
+          <tbody>
+            <?php foreach ($list as $media): ?>
+              <tr>
+                <td class="col-10"><h4><a style="color: white" href="media_page.php?id=<?php echo $media['mediaID'] ?>" > <?php echo $media["title"]; ?> </a> <h4></td>
+                <td>
+                  <form action="" method="POST">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <input type="hidden" value="<?php echo $media['mediaID'] ?>" name="mediaID" title="mediaID" />
+                    <input type="hidden" value="delete media" name="btnAction" title="type" />
+                  </form>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+
+            <?php if (empty($list)) {
+              echo "<div style='color: white'> No items saved yet </div>";
+            }
+            ?>
+          </tbody>
+        </table>
+
     </div>
 </div>
 </div>
