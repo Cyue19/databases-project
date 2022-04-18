@@ -207,15 +207,15 @@
 
     <?php if (isset($_SESSION["user"])) {
         $endpoint = "media_page.php?id=" . $media[0]['mediaID'];
-        $endpoint .= "&save=wishlist";
-        echo "    <a class='btn btn-primary' href='$endpoint' >+ Wishlist</a>";
+        $endpoint .= "&save=watching";
+        echo "    <a class='btn btn-primary' href='$endpoint' >+ Continue Watching</a>";
     }
     ?>
 
     <?php if (isset($_SESSION["user"])) {
         $endpoint = "media_page.php?id=" . $media[0]['mediaID'];
-        $endpoint .= "&save=watching";
-        echo "    <a class='btn btn-primary' href='$endpoint' >+ Watching</a>";
+        $endpoint .= "&save=wishlist";
+        echo "    <a class='btn btn-primary' href='$endpoint' >+ Wishlist</a>";
     }
     ?>
 
@@ -245,7 +245,6 @@
 							<h4 class="mb-4 mt-0">Average User Rating: </h4>
               <h4 class="mb-4 mt-0 bold padding-bottom-7"><?php echo $media[0]["rating"] ?> <small>/ 5.00</small></h4>
               <hr>
-              <h4 class="mb-4 mt-0">Write a Review: </h4>
               <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Write a Review
