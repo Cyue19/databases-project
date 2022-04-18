@@ -5,11 +5,11 @@ session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (!empty($_POST["btnAction"]) && $_POST["btnAction"]=="Create") {
-        //add user
+        //add admin
         $result = addAdmin($_POST["username"], $_POST["firstName"], $_POST["lastName"], $_POST["email"], $_POST["password"], $_POST["company"], $_POST["role"]);
         if (isset($result)) {
             if ($result) {
-                header('Location: ./index.php');
+                // header('Location: ./index.php');
             } else {
                 $err = "Could not create account";
             }

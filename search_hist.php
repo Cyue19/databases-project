@@ -57,7 +57,7 @@
                     </tr>
                 <?php endforeach; ?>
 
-                <?php if (empty($list)) {
+                <?php if (empty($results)) {
                     echo "<div style='color: white'> No searches yet </div>";
                 }
                 ?>

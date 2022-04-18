@@ -78,6 +78,7 @@ $email = getEmail();
 			<!-- button -->
 			<div class="col text-center">
 				<a role="button" class="btn btn-secondary" href="edit_prof.php">Edit Profile</a>
+				<a role="button" class="btn btn-primary" href="./search_hist.php">View Search History</a>
 			</div>
 		</div>
 	</div>

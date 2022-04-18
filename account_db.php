@@ -68,7 +68,7 @@ function addUser($username, $firstName, $lastName, $email, $password, $birthDate
 function addAdmin($username, $firstName, $lastName, $email, $password, $company, $role) {
     //db handler from connect-db
     global $db;
-
+    echo "here";
     $success = addAccount($username, $firstName, $lastName, $email, $password);
 
     if ($success) {
