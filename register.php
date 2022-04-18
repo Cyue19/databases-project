@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $result = addUser($_POST["username"], $_POST["firstName"], $_POST["lastName"], $_POST["email"], $_POST["password"], $_POST["birthDate"], $_POST["gender"]);
         if (isset($result)) {
             if ($result) {
-                header('Location: http://localhost/cs4750/databases-project/index.php');
+                header('Location: ./index.php');
             } else {
                 $err = "Could not create account";
             }
