@@ -120,8 +120,6 @@
 			<hr>
 		</div>
         <div class="col-6"></div>
-
-        <div class="col">
             <a href="import.php" class="btn btn-warning"> Import</a>
         </div>
 
@@ -136,12 +134,11 @@
             </select>
           </form>
         </div>
-    </div> 
 
-    <hr id="divider"class="bg-danger border-2 border-top">
+        <hr id="divider"class="bg-danger border-2 border-top">
 
-    <div class="row">
-          <div class="col">
+        <div class="row">
+          <div class="col text-white">
               <form method="POST">
                 <select class="form-select" id="yearReleased" name="yearReleased" onchange="this.form.submit()">
                   <option selected>Year Released</option>
