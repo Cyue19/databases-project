@@ -56,6 +56,7 @@ function addUser($username, $firstName, $lastName, $email, $password, $birthDate
 
         if ($result) {
             return true;
+            $_SESSION['auth'] = "user";
         } else {
             return false;
         }
@@ -77,8 +78,8 @@ function addAdmin($username, $firstName, $lastName, $email, $password, $company,
         //prepare, bind, and execute sql query
         $statement = $db->prepare($query);
         $statement->bindValue(":username", $username);
-        $statement->bindValue(":birthDate", $company);
-        $statement->bindValue(":gender", $role);
+        $statement->bindValue(":company", $company);
+        $statement->bindValue(":role", $role);
 
         $result = $statement->execute();
         
@@ -87,6 +88,7 @@ function addAdmin($username, $firstName, $lastName, $email, $password, $company,
 
         if ($result) {
             return true;
+            $_SESSION['auth'] = "admin";
         } else {
             return false;
         }
