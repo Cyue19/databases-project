@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         //log in to website
         $res = login($_POST["username"], $_POST["password"]);
         if ($res) {
-            header('Location: http://localhost/cs4750/databases-project/index.php');
+            header('Location: ./index.php');
         }
     }
 }
